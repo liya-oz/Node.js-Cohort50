@@ -10,13 +10,16 @@ app.get('/', (req, res) => {
 });
 
 app.post('/weather', (req, res) => {
-  const { city } = req.body;
+  const { cityName } = req.body;
 
-  if (!city) {
-    return res.status(400).json({ error: 'Missing required field: city' });
+  if (!cityName) {
+    return res.status(400).json({ error: 'Missing field: cityName' });
   }
 
-  res.json({ message: `Weather data received for ${city}` });
+  res.json({
+    message: `Weather data received for ${cityName}`,
+    data: { cityName },
+  });
 });
 
 app.listen(PORT, () => {
